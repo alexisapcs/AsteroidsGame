@@ -1,15 +1,40 @@
 class Spaceship extends Floater  
 {
   int myX, myY;
-  Spaceship() {
-    corners;  //the number of corners, a triangular floater has 3   
-  protected int[] xCorners;   
-  protected int[] yCorners;   
-  protected int myColor;   
-  protected double myCenterX, myCenterY; //holds center coordinates   
-  protected double myDirectionX, myDirectionY; //holds x and y coordinates of the vector for direction of travel   
-  protected double myPointDirection;
+  public Spaceship() {
+    corners = 4;
+    int[] xS = {9, -9, -4, -9};
+    int[] yS = {0, 7, 0, -7};
+    xCorners = xS;   
+    yCorners = yS;
+    /*
+      xCorners[0] = 9;
+      yCorners[0] = 0;
+      xCorners[1] = -9;
+      yCorners[1] = 7;
+      xCorners[2] = -4;
+      yCorners[2] = 0;
+      xCorners[3] = -9;
+      yCorners[3] = -7;
+      */
+    myColor = color(255, 0, 0);   
+    myCenterX = width/2;
+    myCenterY = height/2;
+    myDirectionX = 0.01;
+    myDirectionY = 0.01;
+    myPointDirection = 0;
   }
+  public void turn(int nDegreesOfRotation) {
+    myPointDirection+=nDegreesOfRotation;
+  }
+  public void accelerate (double dAmount) {  
+     double dRadians = myPointDirection*(Math.PI/180);
+     
+     //change coordinates of direction of travel
+     myDirectionX += ((dAmount) * Math.cos(dRadians));
+     myDirectionY += ((dAmount) * Math.sin(dRadians));
+   }
+
   public void setX(int x) {
     myX = x;
   } 
