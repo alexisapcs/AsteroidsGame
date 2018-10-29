@@ -14,6 +14,7 @@ public void draw()
   rect(0, 0, width, height);
   color(255, 255, 255, 80);
   ss.show();
+  ss.move();
 }
 
 public void keyPressed() {
@@ -28,5 +29,13 @@ public void keyPressed() {
   if (key == 'w') {
     ss.accelerate(1);
     System.out.println("Go");
+  }
+  
+  if (key == 'h') {
+    ss.setX((int)(Math.random()*width));
+    ss.setY((int)(Math.random()*height));
+    ss.setDirectionX(0);
+    ss.setDirectionY(0);
+    ss.setPointDirection((int)(Math.random()*360));
   }
 }
