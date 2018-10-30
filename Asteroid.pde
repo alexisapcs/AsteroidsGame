@@ -1,29 +1,29 @@
-class Spaceship extends Floater  
+class Asteroid extends Floater 
 {
-  public Spaceship() {
-    corners = 4;
-    int[] xS = {9, -9, -4, -9};
-    int[] yS = {0, 7, 0, -7};
+  private int myRotateSpeed;
+  public Asteroid()
+  {
+    corners = 12;
+    int[] xS = {0, 1, 3, 2, 3, 1, 0, -1, -3, -2, -3, -1};
+    int[] yS = {2, 3, 1, 0, -1, -3, -2, -3, -1, 0, 1, 3};
     xCorners = xS;   
     yCorners = yS;
-    myColor = color(255, 0, 0);   
-    myCenterX = width/2;
-    myCenterY = height/2;
+    //corners = 10;
+    //int[] xS = {0, 1, 2, 3, 3, 0, -3, -3, -2, -1};
+    //int[] yS = {1, 2, 2, 1, 0, -3, 0, 1, 2, 2};
+    myColor = color(193, 193, 193);   
+    myCenterX = (int)(Math.random()*width);
+    myCenterY = (int)(Math.random()*height);
     myDirectionX = 0;
     myDirectionY = 0;
     myPointDirection = 0;
+    myRotateSpeed = (int)(Math.random()*2)-1;
+    println(myRotateSpeed);
   }
-  public void turn(int nDegreesOfRotation) {
-    myPointDirection+=nDegreesOfRotation;
+  public void move()
+  {
+    myPointDirection+=myRotateSpeed;
   }
-  public void accelerate (double dAmount) {  
-     double dRadians = myPointDirection*(Math.PI/180);
-     
-     //change coordinates of direction of travel
-     myDirectionX += ((dAmount) * Math.cos(dRadians));
-     myDirectionY += ((dAmount) * Math.sin(dRadians));
-   }
-
   public void setX(int x) {myCenterX = x;} 
   public int getX() {return (int)myCenterX;}
   public void setY(int y) {myCenterY = y;}  

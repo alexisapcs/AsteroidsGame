@@ -1,5 +1,6 @@
 //your variable declarations here
 Spaceship ss = new Spaceship();
+Asteroid a = new Asteroid();
 
 public void setup() 
 {
@@ -15,8 +16,13 @@ public void draw()
   color(255, 255, 255, 80);
   ss.show();
   ss.move();
+  a.show();
 }
-
+public void mousePressed()
+{
+  a.setX((int)(Math.random()*width));
+  a.setY((int)(Math.random()*height));;
+  }
 public void keyPressed() {
   if (key == 'a') {
     ss.turn(-10);
