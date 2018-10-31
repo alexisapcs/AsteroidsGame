@@ -4,14 +4,14 @@ class Asteroid extends Floater
   public Asteroid()
   {
     corners = 12;
-    int[] xS = {0, 1, 3, 2, 3, 1, 0, -1, -3, -2, -3, -1};
-    int[] yS = {2, 3, 1, 0, -1, -3, -2, -3, -1, 0, 1, 3};
+    int[] xS = {0, 2, 6, 4, 6, 2, 0, -2, -6, -4, -6, -2};
+    int[] yS = {4, 6, 2, 0, -2, -6, -4, -6, -2, 0, 2, 6};
+    //corners = 10;
+    //int[] xS = {0, 6, 6, 4, 2, 0, -2, -4, -6, -6};
+    //int[] yS = {6, 0, -2, -4, -4, -2, -4, -4, -2, 0};
     xCorners = xS;   
     yCorners = yS;
-    //corners = 10;
-    //int[] xS = {0, 1, 2, 3, 3, 0, -3, -3, -2, -1};
-    //int[] yS = {1, 2, 2, 1, 0, -3, 0, 1, 2, 2};
-    myColor = color(193, 193, 193);   
+    myColor = color(255, 0, 0);   
     myCenterX = (int)(Math.random()*width);
     myCenterY = (int)(Math.random()*height);
     myDirectionX = 0;

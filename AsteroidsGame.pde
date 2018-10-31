@@ -26,15 +26,14 @@ public void mousePressed()
 public void keyPressed() {
   if (key == 'a') {
     ss.turn(-10);
-    System.out.println("Left");
   } else if (key == 'd') {
     ss.turn(10);
-    System.out.println("Right");
   }
-  
+
   if (key == 'w') {
     ss.accelerate(1);
-    System.out.println("Go");
+  } else if (key == 's') {
+    ss.decelerate(1);
   }
   
   if (key == 'h') {
