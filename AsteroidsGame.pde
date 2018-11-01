@@ -1,19 +1,26 @@
 //your variable declarations here
-Spaceship ss = new Spaceship();
+Spaceship ss;
 Asteroid a = new Asteroid();
+Star s[] = new Star[200];
 
 public void setup() 
 {
   size(500, 500);
   ss = new Spaceship();
+  for (int i = 0; i<200; i++) {
+    s[i] = new Star();
+  }
 }
 public void draw() 
 {
-  background(255);
-  fill(color(255, 255, 255, 10));
+  //fill(color(0, 0, 0, 10));
   noStroke();
+  fill(color(0, 0, 0, 100));
   rect(0, 0, width, height);
-  color(255, 255, 255, 80);
+  color(0, 0, 0, 80);
+  for (int i = 0; i<200; i++) {
+    s[i].show();
+  }
   ss.show();
   ss.move();
   a.show();
@@ -26,14 +33,16 @@ public void mousePressed()
 public void keyPressed() {
   if (key == 'a') {
     ss.turn(-10);
+    println(ss.myPointDirection);
   } else if (key == 'd') {
     ss.turn(10);
+    println(ss.myPointDirection);
   }
 
   if (key == 'w') {
-    ss.accelerate(1);
+    ss.accelerate(0.5);
   } else if (key == 's') {
-    ss.decelerate(1);
+    ss.decelerate(0.5);
   }
   
   if (key == 'h') {

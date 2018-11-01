@@ -3,12 +3,12 @@ class Asteroid extends Floater
   private int myRotateSpeed;
   public Asteroid()
   {
-    corners = 12;
-    int[] xS = {0, 2, 6, 4, 6, 2, 0, -2, -6, -4, -6, -2};
-    int[] yS = {4, 6, 2, 0, -2, -6, -4, -6, -2, 0, 2, 6};
-    //corners = 10;
-    //int[] xS = {0, 6, 6, 4, 2, 0, -2, -4, -6, -6};
-    //int[] yS = {6, 0, -2, -4, -4, -2, -4, -4, -2, 0};
+    //corners = 12;
+    //int[] xS = {0, 2, 6, 4, 6, 2, 0, -2, -6, -4, -6, -2};
+    //int[] yS = {4, 6, 2, 0, -2, -6, -4, -6, -2, 0, 2, 6};
+    corners = 10;
+    int[] xS = {0, 6, 6, 4, 2, 0, -2, -4, -6, -6};
+    int[] yS = {6, 0, -2, -4, -4, -2, -4, -4, -2, 0};
     xCorners = xS;   
     yCorners = yS;
     myColor = color(255, 0, 0);   

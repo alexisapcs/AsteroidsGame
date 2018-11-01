@@ -6,7 +6,7 @@ class Spaceship extends Floater
     int[] yS = {0, 7, 0, -7};
     xCorners = xS;   
     yCorners = yS;
-    myColor = color(50, 50, 50, 120);   
+    myColor = color(200, 200, 200);   
     myCenterX = width/2;
     myCenterY = height/2;
     myDirectionX = 0;
@@ -19,28 +19,32 @@ class Spaceship extends Floater
   public void accelerate (double dAmount) {  
      double dRadians = myPointDirection*(Math.PI/180);
      //change coordinates of direction of travel
-     if (myDirectionX <= 16.0 && myDirectionX >= -16.0) {
+     if (myDirectionX <= 11.0 && myDirectionX >= -11.0) {
        myDirectionX += ((dAmount) * Math.cos(dRadians));
-     } else if (myDirectionX > 16.0) {
-       myDirectionX = 15;
-     } else if (myDirectionX < -16.0) {
-       myDirectionX = -15;
+     } else if (myDirectionX > 11.0) {
+       myDirectionX = 10;
+     } else if (myDirectionX < -11.0) {
+       myDirectionX = -10;
      }
-     print(myDirectionX);
-     if (myDirectionY <= 16.0 && myDirectionY >= -16.0) {
+     if (myDirectionY <= 11.0 && myDirectionY >= -11.0) {
        myDirectionY += ((dAmount) * Math.sin(dRadians));
-     } else if (myDirectionY > 16.0) {
-       myDirectionY = 15;
-     } else if (myDirectionY < -16.0) {
-       myDirectionY = -15;
+     } else if (myDirectionY > 11.0) {
+       myDirectionY = 10;
+     } else if (myDirectionY < -11.0) {
+       myDirectionY = -10;
      }
-     println(", " + myDirectionY);
    }
   public void decelerate (double dAmount) {  
      double dRadians = myPointDirection*(Math.PI/180);
      //change coordinates of direction of travel
-     myDirectionX -= ((dAmount) * Math.cos(dRadians));
+     if (myDirectionX != 0 && myDirectionX > 0.0) {
+       myDirectionX -= ((dAmount) * Math.cos(dRadians));
+     } else if (myDirectionX != 0 && myDirectionX < 0.0) {
+       myDirectionX += ((dAmount) * Math.cos(dRadians));
+     }
      myDirectionY -= ((dAmount) * Math.sin(dRadians));
+     print(myDirectionX);
+     println(", " + myDirectionY);
    }
   public void setX(int x) {myCenterX = x;} 
   public int getX() {return (int)myCenterX;}
