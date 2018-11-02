@@ -15,6 +15,9 @@ class Spaceship extends Floater
   }
   public void turn(int nDegreesOfRotation) {
     myPointDirection+=nDegreesOfRotation;
+    if (myPointDirection == -360 || myPointDirection == 360) {
+      myPointDirection = 0;
+    }
   }
   public void accelerate (double dAmount) {  
      double dRadians = myPointDirection*(Math.PI/180);
@@ -38,11 +41,22 @@ class Spaceship extends Floater
      double dRadians = myPointDirection*(Math.PI/180);
      //change coordinates of direction of travel
      if (myDirectionX != 0 && myDirectionX > 0.0) {
+       if (myPointDirection > -180 && myPointDirection < 0) {}
+       
        myDirectionX -= ((dAmount) * Math.cos(dRadians));
      } else if (myDirectionX != 0 && myDirectionX < 0.0) {
        myDirectionX += ((dAmount) * Math.cos(dRadians));
      }
-     myDirectionY -= ((dAmount) * Math.sin(dRadians));
+     if (myDirectionY != 0 && myDirectionY > 0.0) {
+       myDirectionY -= ((dAmount) * Math.sin(dRadians));
+     } else if (myDirectionY != 0 && myDirectionY < 0.0) {
+       if ((myPointDirection > -180 && myPointDirection < 0) || (myPointDirection > 180 && myPointDirection < 360)) {
+         myDirectionY -= ((dAmount) * Math.sin(dRadians));
+       } else if ((myPointDirection < -180 && myPointDirection > -360) || (myPointDirection < 180 && myPointDirection > 0)) {
+         myDirectionY += ((dAmount) * Math.sin(dRadians));
+       }
+     }
+     //myDirectionY -= ((dAmount) * Math.sin(dRadians));
      print(myDirectionX);
      println(", " + myDirectionY);
    }

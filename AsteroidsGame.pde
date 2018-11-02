@@ -31,21 +31,22 @@ public void mousePressed()
   a.setY((int)(Math.random()*height));;
   }
 public void keyPressed() {
-  if (key == 'a') {
+  if (key == 'a' || key == 'A') {
     ss.turn(-10);
     println(ss.myPointDirection);
-  } else if (key == 'd') {
+    
+  } else if (key == 'd' || key == 'D') {
     ss.turn(10);
     println(ss.myPointDirection);
   }
 
-  if (key == 'w') {
+  if (key == 'w' || key == 'W') {
     ss.accelerate(0.5);
-  } else if (key == 's') {
+  } else if (key == 's' || key == 'S') {
     ss.decelerate(0.5);
   }
   
-  if (key == 'h') {
+  if (key == 'h' || key == 'H') {
     ss.setX((int)(Math.random()*width));
     ss.setY((int)(Math.random()*height));
     ss.setDirectionX(0);
