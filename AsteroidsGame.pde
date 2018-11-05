@@ -1,6 +1,6 @@
 //your variable declarations here
 Spaceship ss;
-Asteroid a = new Asteroid();
+Asteroid a[] = new Asteroid[20];
 Star s[] = new Star[200];
 
 public void setup() 
@@ -9,6 +9,9 @@ public void setup()
   ss = new Spaceship();
   for (int i = 0; i<200; i++) {
     s[i] = new Star();
+  }
+  for (int i = 0; i<20; i++) {
+    a[i] = new Asteroid();
   }
 }
 public void draw() 
@@ -23,13 +26,18 @@ public void draw()
   }
   ss.show();
   ss.move();
-  a.show();
+  for (int i = 0; i<20; i++) {
+    a[i].show();
+    a[i].move();
+  }
 }
 public void mousePressed()
 {
-  a.setX((int)(Math.random()*width));
-  a.setY((int)(Math.random()*height));;
+  for (int i = 0; i<20; i++) {
+    a[i].setX((int)(Math.random()*width));
+    a[i].setY((int)(Math.random()*height));;
   }
+}
 public void keyPressed() {
   if (key == 'a' || key == 'A') {
     ss.turn(-10);
