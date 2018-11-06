@@ -1,6 +1,7 @@
 //your variable declarations here
 Spaceship ss;
-Asteroid a[] = new Asteroid[20];
+//Asteroid a[] = new Asteroid[20];
+ArrayList<Asteroid> aList = new ArrayList<Asteroid>();
 Star s[] = new Star[200];
 
 public void setup() 
@@ -11,7 +12,7 @@ public void setup()
     s[i] = new Star();
   }
   for (int i = 0; i<20; i++) {
-    a[i] = new Asteroid();
+    aList.add(0, new Asteroid());
   }
 }
 public void draw() 
@@ -26,16 +27,16 @@ public void draw()
   }
   ss.show();
   ss.move();
-  for (int i = 0; i<20; i++) {
-    a[i].show();
-    a[i].move();
+  for (int i = 0; i<aList.size(); i++) {
+    aList.get(i).show();
+    aList.get(i).move();
   }
 }
 public void mousePressed()
 {
-  for (int i = 0; i<20; i++) {
-    a[i].setX((int)(Math.random()*width));
-    a[i].setY((int)(Math.random()*height));;
+  for (int i = 0; i<aList.size(); i++) {
+    aList.get(i).setX((int)(Math.random()*width));
+    aList.get(i).setY((int)(Math.random()*height));;
   }
 }
 public void keyPressed() {
@@ -59,6 +60,11 @@ public void keyPressed() {
     ss.setY((int)(Math.random()*height));
     ss.setDirectionX(0);
     ss.setDirectionY(0);
-    ss.setPointDirection((int)(Math.random()*360));
+    ss.setPointDirection((int)(Math.random()*36)*10);
+    println(ss.getPointDirection());
+    for (int i = 0; i<20; i++) {
+      aList.get(i).setX((int)(Math.random()*width));
+      aList.get(i).setY((int)(Math.random()*height));;
+    }
   }
 }
