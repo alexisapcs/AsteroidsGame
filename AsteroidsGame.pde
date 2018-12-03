@@ -69,25 +69,25 @@ public void accelerate() {
             playerAngle < 2*Math.PI && playerAngle > 3*Math.PI/2 ||
             playerAngle < -3*Math.PI/2 && playerAngle > -2*Math.PI) {
             if (ss.getDirectionX() < ss.getTopSpeedX()) {
-                ss.accelerate(-0.15, 'x');
+                ss.accelerate(0.15, 'x');
             }
         }
         if (playerAngle < 3*Math.PI/2 && playerAngle > Math.PI/2 || 
             playerAngle < -Math.PI/2 && playerAngle > -3*Math.PI/2) {
             if (ss.getDirectionX() > -ss.getTopSpeedX()) {
-                ss.accelerate(-0.15, 'x');
+                ss.accelerate(0.15, 'x');
             }
         }
         if (playerAngle > Math.PI && playerAngle < 2*Math.PI ||
             playerAngle > -Math.PI && playerAngle < 0) {
             if (ss.getDirectionY() > -ss.getTopSpeedY()) {
-                ss.accelerate(-0.15, 'y');
+                ss.accelerate(0.15, 'y');
             }
         }
         if (playerAngle > 0 && playerAngle < Math.PI ||
             playerAngle > -2*Math.PI && playerAngle < -Math.PI) {
             if (ss.getDirectionY() < ss.getTopSpeedY()) {
-                ss.accelerate(-0.15, 'y');
+                ss.accelerate(0.15, 'y');
             }
         }
     } else if (!wIsPressed) {
