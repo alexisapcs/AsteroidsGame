@@ -10,10 +10,10 @@ public void setup()
   size(500, 500);
   ss = new Spaceship();
   ss.setTopSpeed(15.0, 15.0);
-  for (int i = 0; i<200; i++) {
+  for (int i = 0; i < 200; i++) {
     s[i] = new Star();
   }
-  for (int i = 0; i<20; i++) {
+  for (int i = 0; i < 20; i++) {
     aList.add(0, new Asteroid());
   }
 }
@@ -29,9 +29,13 @@ public void draw()
   }
   ss.show();
   ss.move();
-  for (int i = 0; i<aList.size(); i++) {
+  for (int i = 0; i < aList.size(); i++) {
     aList.get(i).show();
     aList.get(i).move();
+    if (dist(ss.getX(), ss.getY(), aList.get(i).getX(), aList.get(i).getY()) <= 20) {
+      aList.remove(i);
+      i--;
+    }
   }
   accelerate();
 }
@@ -116,15 +120,27 @@ public void accelerate() {
 
 // keypressed and released stuff
 void keyPressed() {
-    if ( key == 'w' || keyCode == UP ) { wIsPressed = true; println("hi");} else 
-    if ( key == 'a' || keyCode == LEFT ) { aIsPressed = true; } else
-    if ( key == 'd' || keyCode == RIGHT ) { dIsPressed = true; }
+    if ( key == 'w' || key == 'W' || keyCode == UP ) { wIsPressed = true; println("hi");} else 
+    if ( key == 'a' || key == 'A' || keyCode == LEFT ) { aIsPressed = true; } else
+    if ( key == 'd' || key == 'D' || keyCode == RIGHT ) { dIsPressed = true; }
+    if ( key == 'h' || key == 'H' || keyCode == SHIFT ) {
+      ss.setX((int)(Math.random()*width));
+      ss.setY((int)(Math.random()*height));
+      ss.setDirectionX(0);
+      ss.setDirectionY(0);
+      ss.setPointDirection((int)(Math.random()*36)*10);
+      println(ss.getPointDirection());
+      for (int i = 0; i < aList.size(); i++) {
+        aList.get(i).setX((int)(Math.random()*width));
+        aList.get(i).setY((int)(Math.random()*height));;
+      }
+    }
 }
 
 void keyReleased() {
-    if ( key == 'w' || keyCode == UP ) { wIsPressed = false; println("bye");} else 
-    if ( key == 'a' || keyCode == LEFT ) { aIsPressed = false; } else
-    if ( key == 'd' || keyCode == RIGHT ) { dIsPressed = false; }
+    if ( key == 'w' || key == 'W' || keyCode == UP ) { wIsPressed = false; println("bye");} else 
+    if ( key == 'a' || key == 'A' || keyCode == LEFT ) { aIsPressed = false; } else
+    if ( key == 'd' || key == 'D' || keyCode == RIGHT ) { dIsPressed = false; }
 }
 /*
 public void keyPressed() {
