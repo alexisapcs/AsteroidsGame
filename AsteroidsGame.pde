@@ -1,6 +1,6 @@
 //your variable declarations here
 Spaceship ss;
-boolean wIsPressed, aIsPressed, dIsPressed, spaceIsPressed = false;
+boolean wIsPressed, aIsPressed, dIsPressed, spaceIsPressed, isDead = false;
 ArrayList<Asteroid> aList = new ArrayList<Asteroid>();
 ArrayList<Bullet> bList = new ArrayList<Bullet>();
 Star s[] = new Star[200];
@@ -13,7 +13,7 @@ public void setup()
   for (int i = 0; i < 200; i++) {
     s[i] = new Star();
   }
-  for (int i = 0; i < 0; i++) {
+  for (int i = 0; i < 1; i++) {
     aList.add(0, new Asteroid());
   }
 }
@@ -34,30 +34,25 @@ public void draw()
     aList.get(i).move();
     if (dist(ss.getX(), ss.getY(), aList.get(i).getX(), aList.get(i).getY()) <= 20) {
       aList.remove(i);
-      i--;
+      break;
     }
     for (int j = 0; j < bList.size(); j++) {
       if (dist(aList.get(i).getX(), aList.get(i).getY(), bList.get(j).getX(), bList.get(j).getY()) <= 10) {
-        aList.remove(j);
-        j--;
+        aList.remove(i);
+        break;
       }
     }
   }
   for (int i = 0; i < bList.size(); i++) {
     bList.get(i).show();
     bList.get(i).move();
-    if(bList.get(i).getX() > width || bList.get(i).getX() < 0 || bList.get(i).getY() > height || bList.get(i).getY() < 0)
-    {     
-      System.out.println("FIUSHALAJDLAJSLDKJASLDKJALSDKJLASKD");
-      bList.remove(i);
-      i--;
-    }    
   }
+  boss();
   accelerate();
 }
 public void mousePressed()
 {
-  for (int i = 0; i<aList.size(); i++) {
+  for (int i = 0; i < aList.size(); i++) {
     aList.get(i).setX((int)(Math.random()*width));
     aList.get(i).setY((int)(Math.random()*height));;
   }
@@ -70,7 +65,7 @@ public void accelerate() {
     //System.out.println("angle (radians): " + playerAngle); // angle (radians)
     //System.out.println("max x: " + ss.getTopSpeedX() + ",  max y: " + ss.getTopSpeedY()); // converted top speeds
     //System.out.println("speed x: " + ss.getDirectionX() + ",  speed y: " + ss.getDirectionY()); // actual speeds
-    //System.out.println(bList.size());
+    System.out.println(bList.size());
     // angles cannot go over 2PI radians
     if (playerAngle > Math.PI*2) {
         ss.setPointDirection(0);
@@ -145,21 +140,15 @@ public void keyPressed() {
       ss.setDirectionX(0);
       ss.setDirectionY(0);
       ss.setPointDirection((int)(Math.random()*36)*10);
-      println(ss.getPointDirection());
+      fill(255, 255, 255, 120);
+      rect(0, 0, width, height);
       for (int i = 0; i < aList.size(); i++) {
         aList.get(i).setX((int)(Math.random()*width));
         aList.get(i).setY((int)(Math.random()*height));;
       }
     }
     if ( key == ' ' ) { 
-      bList.add(0, new Bullet()); 
-      for (int i = 0; i < bList.size(); i++) {
-        bList.get(i).setX(ss.getX());
-        bList.get(i).setY(ss.getY());
-        bList.get(i).setPointDirection((int)ss.getPointDirection());
-        bList.get(i).setDirectionX(posOrNeg(ss.getPointDirection())*2);
-        bList.get(i).setDirectionY(posOrNeg(ss.getPointDirection())*2);
-      }
+      bList.add(0, new Bullet(ss)); 
     } 
 }
 
@@ -169,44 +158,18 @@ public void keyReleased() {
     if ( key == 'd' || key == 'D' || keyCode == RIGHT ) { dIsPressed = false; }
 }
 
-public int posOrNeg(double num) 
+public void boss() 
 {
-  if (num > 0) {
-    return 1; 
-  } else if (num < 0) {
-    return -1;
-  } else {
-    return 0;
-  }
-}
-/*
-public void keyPressed() {
-  if (key == 'a' || key == 'A') {
-    ss.turn(-10);
-    println(ss.myPointDirection);
-    
-  } else if (key == 'd' || key == 'D') {
-    ss.turn(10);
-    println(ss.myPointDirection);
-  }
-
-  if (key == 'w' || key == 'W') {
-    ss.accelerate(0.5);
-  } else if (key == 's' || key == 'S') {
-    ss.decelerate(0.5);
-  }
-  
-  if (key == 'h' || key == 'H') {
-    ss.setX((int)(Math.random()*width));
-    ss.setY((int)(Math.random()*height));
-    ss.setDirectionX(0);
-    ss.setDirectionY(0);
-    ss.setPointDirection((int)(Math.random()*36)*10);
-    println(ss.getPointDirection());
-    for (int i = 0; i<20; i++) {
-      aList.get(i).setX((int)(Math.random()*width));
-      aList.get(i).setY((int)(Math.random()*height));;
+  if (isDead == false) {
+    if (aList.size() == 0) {
+      aList.add(0, new Asteroid(color(255, 0, 0))); 
+      for (int j = 0; j < bList.size(); j++) {
+        if (dist(aList.get(0).getX(), aList.get(0).getY(), bList.get(j).getX(), bList.get(j).getY()) <= 50) {
+          aList.remove(0);
+          isDead = true;
+          break;
+        }
+      }
     }
   }
 }
-*/

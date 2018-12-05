@@ -24,6 +24,23 @@ class Asteroid extends Floater
       myRotateSpeed = (float)(Math.random()*3)-1;
     }
   }
+  public Asteroid(int look)
+  {
+    corners = 10;
+    int[] xS = {0, 48, 48, 32, 16, 0, -16, -32, -48, -48};
+    int[] yS = {48, 0, -16, -32, -32, -16, -32, -32, -16, 0};
+    //int[] xS = {0, 24, 24, 16, 8, 0, -8, -16, -24, -24};
+    //int[] yS = {24, 0, -8, -16, -16, -8, -16, -16, -8, 0};
+    xCorners = xS;   
+    yCorners = yS;
+    myColor = look;   
+    myCenterX = width/2;
+    myCenterY = height/2;
+    myDirectionX = 0;
+    myDirectionY = 0;
+    myPointDirection = 0;
+    myRotateSpeed = 0;
+  }
   public void move()
   {
     myPointDirection+=myRotateSpeed;
