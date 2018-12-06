@@ -50,13 +50,6 @@ public void draw()
   boss();
   accelerate();
 }
-public void mousePressed()
-{
-  for (int i = 0; i < aList.size(); i++) {
-    aList.get(i).setX((int)(Math.random()*width));
-    aList.get(i).setY((int)(Math.random()*height));;
-  }
-}
 
 public void accelerate() {
     double playerAngle = ss.getPointDirection()*(Math.PI/180);
@@ -164,7 +157,7 @@ public void boss()
     if (aList.size() == 0) {
       aList.add(0, new Asteroid(color(255, 0, 0))); 
       for (int j = 0; j < bList.size(); j++) {
-        if (dist(aList.get(0).getX(), aList.get(0).getY(), bList.get(j).getX(), bList.get(j).getY()) <= 50) {
+        if (dist(aList.get(0).getX(), aList.get(0).getY(), bList.get(j).getX(), bList.get(j).getY()) <= 300) {
           aList.remove(0);
           isDead = true;
           break;
