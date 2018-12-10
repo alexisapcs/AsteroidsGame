@@ -35,9 +35,9 @@ class Asteroid extends Floater
     xCorners = xS;   
     yCorners = yS;
     myColor = look;   
-    myCenterX = width/2;
+    myCenterX = 0;
     myCenterY = height/2;
-    myDirectionX = 0;
+    myDirectionX = 2;
     myDirectionY = 0;
     myPointDirection = 0;
     myRotateSpeed = 0;

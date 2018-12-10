@@ -1,6 +1,6 @@
 //your variable declarations here
 Spaceship ss;
-boolean wIsPressed, aIsPressed, dIsPressed, spaceIsPressed, isDead = false;
+boolean wIsPressed, aIsPressed, dIsPressed, spaceIsPressed, isDead, liveBoss = false;
 ArrayList<Asteroid> aList = new ArrayList<Asteroid>();
 ArrayList<Bullet> bList = new ArrayList<Bullet>();
 Star s[] = new Star[200];
@@ -36,10 +36,20 @@ public void draw()
       aList.remove(i);
       break;
     }
-    for (int j = 0; j < bList.size(); j++) {
-      if (dist(aList.get(i).getX(), aList.get(i).getY(), bList.get(j).getX(), bList.get(j).getY()) <= 10) {
-        aList.remove(i);
-        break;
+    if (liveBoss == false) {
+      for (int j = 0; j < bList.size(); j++) {
+        if (dist(aList.get(i).getX(), aList.get(i).getY(), bList.get(j).getX(), bList.get(j).getY()) <= 10) {
+          aList.remove(i);
+          break;
+        }
+      }
+    } else {
+      for (int j = 0; j < bList.size(); j++) {
+        if (dist(aList.get(0).getX(), aList.get(0).getY(), bList.get(j).getX(), bList.get(j).getY()) <= 50) {
+          aList.remove(0);
+          isDead = true;
+          break;
+        }
       }
     }
   }
@@ -146,7 +156,7 @@ public void keyPressed() {
 }
 
 public void keyReleased() {
-    if ( key == 'w' || key == 'W' || keyCode == UP ) { wIsPressed = false; println("bye");} else 
+    if ( key == 'w' || key == 'W' || keyCode == UP ) { wIsPressed = false; } else 
     if ( key == 'a' || key == 'A' || keyCode == LEFT ) { aIsPressed = false; } else
     if ( key == 'd' || key == 'D' || keyCode == RIGHT ) { dIsPressed = false; }
 }
@@ -156,13 +166,7 @@ public void boss()
   if (isDead == false) {
     if (aList.size() == 0) {
       aList.add(0, new Asteroid(color(255, 0, 0))); 
-      for (int j = 0; j < bList.size(); j++) {
-        if (dist(aList.get(0).getX(), aList.get(0).getY(), bList.get(j).getX(), bList.get(j).getY()) <= 300) {
-          aList.remove(0);
-          isDead = true;
-          break;
-        }
-      }
+      liveBoss = true;
     }
   }
 }
