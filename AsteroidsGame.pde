@@ -68,7 +68,7 @@ public void accelerate() {
     //System.out.println("angle (radians): " + playerAngle); // angle (radians)
     //System.out.println("max x: " + ss.getTopSpeedX() + ",  max y: " + ss.getTopSpeedY()); // converted top speeds
     //System.out.println("speed x: " + ss.getDirectionX() + ",  speed y: " + ss.getDirectionY()); // actual speeds
-    System.out.println(bList.size());
+    //System.out.println(bList.size());
     // angles cannot go over 2PI radians
     if (playerAngle > Math.PI*2) {
         ss.setPointDirection(0);

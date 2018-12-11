@@ -61,8 +61,8 @@ class Spaceship extends Floater
        }
      }
      //myDirectionY -= ((dAmount) * Math.sin(dRadians));
-     print(myDirectionX);
-     println(", " + myDirectionY);
+     //print(myDirectionX);
+     //println(", " + myDirectionY);
    }
   public void setX(int x) {myCenterX = x;} 
   public int getX() {return (int)myCenterX;}
