@@ -1,6 +1,7 @@
 class Asteroid extends Floater 
 {
   private float myRotateSpeed;
+  private String side;
   public Asteroid()
   {
     //corners = 12;
@@ -24,7 +25,7 @@ class Asteroid extends Floater
       myRotateSpeed = (float)(Math.random()*3)-1;
     }
   }
-  public Asteroid(int look)
+  public Asteroid(Spaceship theShip)
   {
     corners = 30;
     int[] xS = {0, -2, -4, -7, -10, -13, -16, -19, -21, -22, -22, -21, -19, -16, -10, 0, 10, 16, 19, 21, 22, 22, 21, 19, 16, 13, 10, 7, 4, 2};
@@ -34,13 +35,42 @@ class Asteroid extends Floater
     for (int i = 0; i < corners; i++) { yS[i] = yS[i]*4; xS[i] = xS[i]*4;}
     xCorners = xS;   
     yCorners = yS;
-    myColor = look;   
-    myCenterX = 0;
+    myColor = color(255, 0, 0);   
     myCenterY = height/2;
-    myDirectionX = 2;
+    if ( side == "right" ) {
+      myCenterX = 0;
+      myDirectionX = 2;
+    } if ( side == "left" ) {
+      myCenterX = width;
+      myDirectionX = -2;
+    }
     myDirectionY = 0;
     myPointDirection = 0;
     myRotateSpeed = 0;
+  }
+  public void move2()
+  {
+    myPointDirection+=myRotateSpeed;
+    myCenterX += myDirectionX;
+    myCenterY += myDirectionY;
+    //wrap around screen    
+    if(myCenterX > width + 22)
+    {     
+      myCenterX = 0;    
+    }    
+    else if (myCenterX < -22)
+    {     
+      myCenterX = width;    
+    }    
+    if(myCenterY > height)
+    {    
+      myCenterY = 0;    
+    } 
+    
+    else if (myCenterY < 0)
+    {     
+      myCenterY = height;    
+    }   
   }
   public void move()
   {
@@ -48,15 +78,15 @@ class Asteroid extends Floater
     myCenterX += myDirectionX;
     myCenterY += myDirectionY;
     //wrap around screen    
-    if(myCenterX >width)
+    if(myCenterX > width)
     {     
       myCenterX = 0;    
     }    
-    else if (myCenterX<0)
+    else if (myCenterX < 0)
     {     
       myCenterX = width;    
     }    
-    if(myCenterY >height)
+    if(myCenterY > height)
     {    
       myCenterY = 0;    
     } 
@@ -70,6 +100,8 @@ class Asteroid extends Floater
   public int getX() {return (int)myCenterX;}
   public void setY(int y) {myCenterY = y;}  
   public int getY() {return (int)myCenterY;}
+  public void setSide(String something) {side = something;} 
+  public String getSide() {return side;}
   public void setDirectionX(double x) {myDirectionX = x;}
   public double getDirectionX() {return myDirectionX;}
   public void setDirectionY(double y) {myDirectionY = y;}

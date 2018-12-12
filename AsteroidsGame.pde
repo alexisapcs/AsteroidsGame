@@ -165,8 +165,12 @@ public void boss()
 {
   if (isDead == false) {
     if (aList.size() == 0) {
-      aList.add(0, new Asteroid(color(255, 0, 0))); 
+      aList.add(0, new Asteroid(ss)); 
       liveBoss = true;
     }
+    if ( ss.getX() >= width/2 ) 
+      aList.get(0).setSide("right");
+    else 
+      aList.get(0).setSide("left");
   }
 }
